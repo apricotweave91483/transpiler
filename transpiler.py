@@ -1,25 +1,16 @@
-'''
--- Master Todo:
-arrays with fancy init
-for loops with direction and iterators, maybe even steps
-'''
-
-
-
-
 from sys import argv
 
 
 if not len(argv) == 2:
     print("INCORRECT USAGE.")
-    exit(69)
+    exit(1)
 
 try:
     with open(f'{argv[1]}', 'r') as f:
         IN_FILE = f.read()
 except:
     print("FILE DNE.")
-    exit(69)
+    exit(1)
 
 
 #VARS for reference/printing
@@ -60,7 +51,7 @@ def parse_line_with_forgiveness_for_quotes_and_parenthesis(line: str) -> list:
 
     if quote_mode:
         print("SYNTAX ERROR.")
-        exit(69)
+        exit(1)
     if curr:
         final.append(curr)
     return final
@@ -88,7 +79,7 @@ class _Print:
         self.args = args
 
 def parse_print(line: list) -> _Print:
-    #TODO: add var support
+
     if len(line) > 1:
         return _Print(line[1::])
     else:
@@ -108,7 +99,7 @@ def parse_var(line: list) -> _Num | _Str:
     else:
         print(line)
         print("SYNTAX ERROR")
-        exit(69)
+        exit(1)
 
 def parse_for(line: list) -> _For:
     final = _For()
@@ -133,7 +124,7 @@ def _Print_string(printobject: _Print) -> str:
             return '%d'
         else:
             print("OBJECT NOT SUPPORTED FOR PRINTING.")
-            exit(69)
+            exit(1)
     var_queue = []
 
     if printobject.args:
@@ -149,7 +140,7 @@ def _Print_string(printobject: _Print) -> str:
                 var_queue.append(argument)
             else:
                 print("SYNTAX ERROR.")
-                exit(69)
+                exit(1)
 
         out += '\\n"'
         if var_queue:
