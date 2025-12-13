@@ -98,7 +98,7 @@ def parse_var(line: list) -> _Num | _Str:
         return final
     else:
         print(line)
-        print("SYNTAX ERROR")
+        print("SYNTAX ERROR.")
         exit(1)
 
 def parse_for(line: list) -> _For:
@@ -178,6 +178,7 @@ for x in range(len(L)):
     L[x] = L[x].strip()
     L[x] = parse_line_with_forgiveness_for_quotes_and_parenthesis(L[x])
 OUT_TEXT = ""
+
 #TODO: add variable libary additions
 OUT_TEXT += "#include <stdio.h>\nint main() {"
 for line in L:
